@@ -5,7 +5,17 @@
    <link rel="stylesheet" href="@@webRoot/node_modules/swiper/swiper-bundle.min.css">
    @@include("partials/head/meta.html") @@include("partials/head/head-links.html")
    @@include("partials/head/analytics.html") @@include("partials/head/clarity.html")
-   <title>Mobile App Showcase - Responsive Website Template | Block</title>
+   
+   <title>SirCruX Studios | 3D Animation</title>
+
+   <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
 </head>
 
 <body>
@@ -91,11 +101,9 @@
                            class="badge bg-white text-muted border border-light-subtle rounded-pill text-uppercase fw-semibold py-2 px-3 small ls-md">Security</span>
                      </div>
                      <div class="d-flex flex-column gap-2">
-                        <h2 class="mb-0 display-6">Your Security is Our Priority</h2>
+                        <h2 class="mb-0 display-6">Where Vision Meets Execution</h2>
                         <p class="mb-0">
-                           Your security and privacy at the heart of
-                           <span class="text-primary">[App name]</span>
-                           , because we know there’s no room for compromise when it comes to money.
+                           With over a decade of experience serving global clients, SirCrux Studios merges technical expertise and artistic vision to produce stunning 3D experiences. From biotech breakthroughs to high-impact product launches, our experienced team ensures each project captivates and inspires.
                         </p>
                      </div>
                   </div>
@@ -104,8 +112,8 @@
             <div class="row gy-lg-6 gy-4">
                <div class="col-lg-4 col-md-6" data-cue="zoomIn">
                   
-                  <div class="tilt-box d-flex flex-column gap-5 p-xxl-6 text-center p-3 card card-blur-new" >
-                     <div><img src="./assets/images/mobile-app/security.svg" alt="security"></div>
+                  <div class="tilt-box d-flex flex-column p-xxl-6 text-center p-3 card card-blur-new" >
+                     <div id="three-container" style="width: 100%; height: 200px;"></div>
                      <div class="inner-layer-1 d-flex flex-column gap-2 ">
                         <h3 class="h4">3D Product Animation</h3>
                         <p class="mb-0">Highlight your product’s design and function with stunning visuals — perfect for trade shows, marketing, e-commerce, and investor presentations. </p>
@@ -113,8 +121,8 @@
                   </div>
                </div>
                <div class="col-lg-4 col-md-6" data-cue="zoomIn">
-                  <div class="tilt-box d-flex flex-column gap-5 p-xxl-6 text-center p-3 card card-blur-new">
-                     <div><img src="./assets/images/mobile-app/privacy.svg" alt="privacy"></div>
+                  <div class="tilt-box d-flex flex-column p-xxl-6 text-center p-3 card card-blur-new">
+                     <div id="three-container" style="width: 100%; height: 200px;"></div>
                      <div class="d-flex flex-column gap-2">
                         <h3 class="h4">Biotech & Medical Animation</h3>
                         <p class="mb-0">Transform complex science into clear visuals for medical conferences, pharma launches, training, and investor communications.</p>
@@ -122,8 +130,8 @@
                   </div>
                </div>
                <div class="col-lg-4 col-md-6" data-cue="zoomIn">
-                  <div class="tilt-box d-flex flex-column gap-5 p-xxl-6 text-center p-3 card card-blur-new">
-                     <div><img src="./assets/images/mobile-app/authentication.svg" alt="authentication"></div>
+                  <div class="tilt-box d-flex flex-column p-xxl-6 text-center p-3 card card-blur-new">
+                     <div id="three-container" style="width: 100%; height: 200px;"></div>
                      <div class="d-flex flex-column gap-2">
                         <h3 class="h4">Immersive 3D Websites</h3>
                         <p class="mb-0">Boost engagement with real-time 3D experiences for product configurators, brand storytelling, AR/VR, and digital campaigns.</p>
@@ -153,10 +161,9 @@
             <div class="container">
                <div class="row">
                   <div class="col-lg-6 col-md-12 col-12">
-                     <h1 class="mb-3">We take digital experiences to the next level</h1>
+                     <h1 class="mb-3">Crafted to Captivate</h1>
                      <p class="mb-0 lead">
-                        Our dedicated services are developed to fulfill the whole product cycle. They range from discovery, branding, design over to development and continuous improvements in order to
-                        achieve the best outcome.‍
+                        Step into a curated selection of our most impactful work — where innovation meets storytelling and 3D becomes a tool for persuasion, clarity, and wonder.
                      </p>
                   </div>
                </div>
@@ -192,7 +199,7 @@
                   <div class="gallery-item gallery-item-3 design">
                      <figure class="lift position-relative btn-arrow mb-5">
                         <a href="./portfolio-single.html" class="gallery-item-inner">
-                           <img src="@@webRoot/assets/images/portfolio/portfolio-img-1.jpg" alt="portfolio" class="img-fluid rounded-3" />
+                           <img src="@@webRoot/assets/images/portfolio/portfolio-item-4.png" alt="portfolio" class="img-fluid rounded-3" />
                            <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
                               <i class="bi bi-arrow-up-right"></i>
                            </div>
@@ -220,7 +227,7 @@
                   <div class="mt-md-5 gallery-item gallery-item-3 webdevelopment design ui/ux">
                      <figure class="lift position-relative btn-arrow mb-5">
                         <a href="./portfolio-single.html" class="gallery-item-inner">
-                           <img src="@@webRoot/assets/images/portfolio/portfolio-img-4.jpg" alt="portfolio" class="img-fluid rounded-3" />
+                           <img src="@@webRoot/assets/images/portfolio/portfolio-item-2.png" alt="portfolio" class="img-fluid rounded-3" />
                            <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
                               <i class="bi bi-arrow-up-right"></i>
                            </div>
@@ -248,7 +255,7 @@
                   <div class="gallery-item gallery-item-3 design webdevelopment branding">
                      <figure class="lift position-relative btn-arrow mb-5">
                         <a href="./portfolio-single.html" class="gallery-item-inner">
-                           <img src="./assets/images/portfolio/portfolio-img-2.jpg" alt="portfolio" class="img-fluid rounded-3" />
+                           <img src="./assets/images/portfolio/portfolio-item-1.png" alt="portfolio" class="img-fluid rounded-3" />
                            <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
                               <i class="bi bi-arrow-up-right"></i>
                            </div>
@@ -277,7 +284,7 @@
                   <div class="mt-md-5 gallery-item gallery-item-3 branding design ui/ux">
                      <figure class="lift position-relative btn-arrow mb-5">
                         <a href="./portfolio-single.html" class="gallery-item-inner">
-                           <img src="./assets/images/portfolio/portfolio-img-5.jpg" alt="portfolio" class="img-fluid rounded-3" />
+                           <img src="./assets/images/portfolio/portfolio-item-3.png" alt="portfolio" class="img-fluid rounded-3" />
                            <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
                               <i class="bi bi-arrow-up-right"></i>
                            </div>
@@ -304,7 +311,7 @@
                   <div class="gallery-item gallery-item-3 ui/ux design branding">
                      <figure class="lift position-relative btn-arrow mb-5">
                         <a href="./portfolio-single.html" class="gallery-item-inner">
-                           <img src="./assets/images/portfolio/portfolio-img-3.jpg" alt="portfolio" class="img-fluid rounded-3" />
+                           <img src="./assets/images/portfolio/amparo-thumb.jpg" alt="portfolio" class="img-fluid rounded-3" />
                            <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
                               <i class="bi bi-arrow-up-right"></i>
                            </div>
@@ -867,6 +874,126 @@
           });
       });
   </script>
+
+<script type="module">
+   import * as THREE from "three";
+   import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+   import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUniformsLib.js";
+   import { RectAreaLightHelper } from "three/addons/helpers/RectAreaLightHelper.js";
+ 
+   const container = document.getElementById("three-container");
+ 
+   const scene = new THREE.Scene();
+   const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+   camera.position.z = 5;
+ 
+   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+   renderer.setPixelRatio(window.devicePixelRatio);
+   renderer.outputEncoding = THREE.sRGBEncoding;
+   renderer.setSize(container.clientWidth, container.clientHeight);
+   container.appendChild(renderer.domElement);
+ 
+   // ✅ Enable RectAreaLight support
+   RectAreaLightUniformsLib.init();
+ 
+   // === 🔦 3-Point Area Light Setup ===
+ 
+   // Key Light (main bright light, top-front-left)
+   const keyLight = new THREE.RectAreaLight(0xffffff, 8, 2, 2);
+   keyLight.position.set(-2, 2, 3);
+   keyLight.lookAt(0, 0, 0);
+   scene.add(keyLight);
+ 
+   // Fill Light (softer, front-right)
+   const fillLight = new THREE.RectAreaLight(0xffffff, 4, 1.5, 1.5);
+   fillLight.position.set(2, 1.5, 2.5);
+   fillLight.lookAt(0, 0, 0);
+   scene.add(fillLight);
+ 
+   // Rim Light (edge highlight, behind model)
+   const rimLight = new THREE.RectAreaLight(0xffffff, 6, 2, 2);
+   rimLight.position.set(0, 2, -3);
+   rimLight.lookAt(0, 0, 0);
+   scene.add(rimLight);
+ 
+   // Optional: visualize lights (remove for production)
+   /*
+   scene.add(new RectAreaLightHelper(keyLight));
+   scene.add(new RectAreaLightHelper(fillLight));
+   scene.add(new RectAreaLightHelper(rimLight));
+   */
+ 
+   // === 🧬 Load Model ===
+   let model = null;
+   const loader = new GLTFLoader();
+   loader.load('./assets/3d/icons/molecule.gltf', (gltf) => {
+     model = gltf.scene;
+     model.scale.set(1.5, 1.5, 1.5);
+ 
+     // ✅ Optional: override materials for smoother visuals
+     model.traverse((child) => {
+       if (child.isMesh) {
+         child.material = new THREE.MeshStandardMaterial({
+           color: 0x272727,
+           metalness: 0.0,
+           roughness: 0.1,
+         });
+         // Optional: shadows (enable if needed)
+         // child.castShadow = true;
+         // child.receiveShadow = true;
+       }
+     });
+ 
+     scene.add(model);
+   }, undefined, (err) => {
+     console.error('GLTF load error:', err);
+   });
+ 
+   // === 🖱️ Interactivity ===
+   let targetFov = 45;
+   let mouse = { x: 0, y: 0 };
+ 
+   container.addEventListener("mouseenter", () => targetFov = 30);
+   container.addEventListener("mouseleave", () => targetFov = 45);
+ 
+   container.addEventListener("mousemove", (e) => {
+     const rect = container.getBoundingClientRect();
+     mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+     mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+   });
+ 
+   let baseRotation = 0;
+   let mouseInfluence = { x: 0, y: 0 };
+ 
+   function animate() {
+     requestAnimationFrame(animate);
+ 
+     camera.fov += (targetFov - camera.fov) * 0.05;
+     camera.updateProjectionMatrix();
+ 
+     if (model) {
+       baseRotation += 0.005;
+       mouseInfluence.x += (mouse.x * 0.3 - mouseInfluence.x) * 0.1;
+       mouseInfluence.y += (mouse.y * 0.3 - mouseInfluence.y) * 0.1;
+ 
+       model.rotation.y = baseRotation + mouseInfluence.x;
+       model.rotation.x = mouseInfluence.y;
+     }
+ 
+     renderer.render(scene, camera);
+   }
+ 
+   animate();
+ 
+   window.addEventListener("resize", () => {
+     camera.aspect = container.clientWidth / container.clientHeight;
+     camera.updateProjectionMatrix();
+     renderer.setSize(container.clientWidth, container.clientHeight);
+   });
+ </script>
+ 
+ 
+ 
 </body>
 
 </html>

@@ -48,6 +48,7 @@
       "rellax": "^1.12.1",
       "scrollcue": "^2.0.0",
       "simplebar": "^6.2.5",
-      "swiper": "^10.2.0"
+      "swiper": "^10.2.0",
+      "three": "^0.174.0"
    }
 }
