@@ -15,6 +15,37 @@ a.navbar-brand img {
   padding-left: 0.2rem;
 }
 
+.card-blur-new {
+  background: rgba(35, 35, 35, 0.8509803922);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  background: rgb(31, 31, 31);
+  background: linear-gradient(225deg, rgb(14, 14, 14) 0%, rgb(10, 10, 10) 50%, rgb(14, 14, 14) 100%);
+  border: none !important;
+}
+
+.tilt-box {
+  border-radius: 20px;
+  overflow: hidden; /* This clips the glare to the border-radius */
+  position: relative; /* Ensures children stay inside the border */
+  transform-style: preserve-3d !important;
+}
+
+/* Ensure glare respects the border */
+.tilt-box .js-tilt-glare {
+  border-radius: inherit; /* Inherits the tilt-box's border-radius */
+  overflow: hidden; /* Clips glare within the box */
+}
+
+/* Optional: Smooth hover effect */
+.tilt-box:hover {
+  transition: transform 0.2s ease;
+}
+
+.inner-layer-1 {
+  transform: translateZ(50px) !important;
+}
+
 .text-reset:hover {
   color: var(--bs-primary) !important;
 }
