@@ -822,9 +822,13 @@
    import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
    import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+   import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+   import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+   import { SSAOPass } from "three/addons/postprocessing/SSAOPass.js";
    
    let useVSM = false;
    let useAgxToneMapping = false;
+   let useAO = true;
    
    const container = document.getElementById("three-container-car");
    const toggleContainer = document.getElementById("shadow-toggle-container");
@@ -837,7 +841,7 @@
    renderer.shadowMap.enabled = true;
    container.appendChild(renderer.domElement);
    
-   const scene = new THREE.Scene(); // ✅ Declared before using
+   const scene = new THREE.Scene();
    
    function applyRendererSettings() {
      renderer.toneMapping = useAgxToneMapping ? THREE.AgXToneMapping : THREE.ACESFilmicToneMapping;
@@ -874,6 +878,16 @@
        useAgxToneMapping = !useAgxToneMapping;
        toneToggle.textContent = useAgxToneMapping ? 'Switch to ACES' : 'Switch to AgX';
        applyRendererSettings();
+     });
+   
+     const aoToggle = document.createElement('button');
+     aoToggle.textContent = useAO ? 'Disable AO' : 'Enable AO';
+     aoToggle.style.marginLeft = '12px';
+     toggleContainer.appendChild(aoToggle);
+   
+     aoToggle.addEventListener('click', () => {
+       useAO = !useAO;
+       aoToggle.textContent = useAO ? 'Disable AO' : 'Enable AO';
      });
    }
    
@@ -916,18 +930,30 @@
    const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
    backgroundScene.add(bgMesh);
    
-   // Ground (shadow catcher)
+   // Shadow catcher ground
    const groundGeometry = new THREE.PlaneGeometry(20, 20);
    const groundMaterial = new THREE.ShadowMaterial({ opacity: 0.3 });
    groundMaterial.transparent = true;
-   groundMaterial.needsUpdate = true;
    const ground = new THREE.Mesh(groundGeometry, groundMaterial);
    ground.rotation.x = -Math.PI / 2;
    ground.position.y = groundY;
    ground.receiveShadow = true;
    scene.add(ground);
    
-   // Load HDRI and setup lighting
+   // Post-processing setup
+   let composer, ssaoPass;
+   function setupPostProcessing(camera, scene) {
+     composer = new EffectComposer(renderer);
+     const renderPass = new RenderPass(scene, camera);
+     composer.addPass(renderPass);
+   
+     ssaoPass = new SSAOPass(scene, camera, container.clientWidth, container.clientHeight);
+     ssaoPass.kernelRadius = 8;
+     ssaoPass.minDistance = 0.005;
+     ssaoPass.maxDistance = 0.1;
+     composer.addPass(ssaoPass);
+   }
+   
    const hdriPath = "assets/3d/configurators/car/car_hdri_2.hdr";
    new RGBELoader().load(hdriPath, (texture) => {
      texture.mapping = THREE.EquirectangularReflectionMapping;
@@ -980,6 +1006,7 @@
          });
        }
    
+       setupPostProcessing(activeCamera, scene);
        animate();
      });
    });
@@ -993,7 +1020,12 @@
      renderer.autoClear = false;
      renderer.clear();
      renderer.render(backgroundScene, backgroundCamera);
-     renderer.render(scene, activeCamera);
+   
+     if (useAO && composer) {
+       composer.render();
+     } else {
+       renderer.render(scene, activeCamera);
+     }
    }
    
    window.addEventListener("resize", () => {
@@ -1002,8 +1034,10 @@
        activeCamera.updateProjectionMatrix();
      }
      renderer.setSize(container.clientWidth, container.clientHeight);
+     if (composer) composer.setSize(container.clientWidth, container.clientHeight);
    });
    </script>
+   
    
 
  
