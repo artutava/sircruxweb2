@@ -657,6 +657,19 @@
             </div>
          </section>
          <!--Community resource end-->
+
+
+         <!-- Section Car Start-->
+
+         <section>
+
+            <div id="three-container-car" style="width: 100%; height: 900px;"></div>
+
+         </section>
+
+         
+
+         <!-- Section Car End-->
       
    </main>
    @@include("partials/footer.html")@@include("partials/btn-scroll-top.html") @@include("partials/scripts.html")
@@ -799,6 +812,144 @@
    createThreeIcon("three-container-2", "./assets/3d/icons/molecule.gltf", 0x272727, 0.005, false); // Original material
    createThreeIcon("three-container-3", "./assets/3d/icons/molecule.gltf", 0x272727, 0.002, true);  // Custom material
  </script>
+
+<script type="module">
+   import * as THREE from "three";
+   import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+   import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
+   import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+ 
+   const container = document.getElementById("three-container-car");
+ 
+   const scene = new THREE.Scene();
+ 
+   const renderer = new THREE.WebGLRenderer({ alpha: false, antialias: true });
+   renderer.setPixelRatio(window.devicePixelRatio);
+   renderer.setSize(container.clientWidth, container.clientHeight);
+   renderer.outputColorSpace = THREE.SRGBColorSpace;
+   renderer.shadowMap.enabled = true;
+   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+   container.appendChild(renderer.domElement);
+ 
+   const clock = new THREE.Clock();
+   let mixer = null;
+   let activeCamera = null;
+   let controls = null;
+ 
+   // === Radial gradient background ===
+   const backgroundScene = new THREE.Scene();
+   const backgroundCamera = new THREE.Camera();
+   const bgGeometry = new THREE.PlaneGeometry(2, 2);
+   const bgMaterial = new THREE.ShaderMaterial({
+     uniforms: {
+       innerColor: { value: new THREE.Color(0x4b4b4b) },
+       outerColor: { value: new THREE.Color(0x000000) }
+     },
+     vertexShader: `
+       varying vec2 vUv;
+       void main() {
+         vUv = uv;
+         gl_Position = vec4(position, 1.0);
+       }
+     `,
+     fragmentShader: `
+       varying vec2 vUv;
+       uniform vec3 innerColor;
+       uniform vec3 outerColor;
+       void main() {
+         float dist = distance(vUv, vec2(0.5));
+         gl_FragColor = vec4(mix(innerColor, outerColor, smoothstep(0.0, 0.8, dist)), 1.0);
+       }
+     `,
+     depthWrite: false,
+     depthTest: false,
+     side: THREE.DoubleSide
+   });
+   const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+   backgroundScene.add(bgMesh);
+ 
+   const hdriPath = "assets/3d/configurators/car/car_hdri_2.hdr";
+   new RGBELoader().load(hdriPath, (texture) => {
+     texture.mapping = THREE.EquirectangularReflectionMapping;
+     scene.environment = texture;
+ 
+     // === Directional Light ===
+     const dirLight = new THREE.DirectionalLight(0xffffff, 2);
+     dirLight.position.set(5, 10, 5);
+     dirLight.castShadow = true;
+     dirLight.shadow.mapSize.set(2048, 2048);
+     dirLight.shadow.bias = -0.0005;
+     dirLight.shadow.camera.left = -5;
+     dirLight.shadow.camera.right = 5;
+     dirLight.shadow.camera.top = 5;
+     dirLight.shadow.camera.bottom = -5;
+     dirLight.shadow.camera.near = 0.1;
+     dirLight.shadow.camera.far = 20;
+     scene.add(dirLight);
+ 
+     // === Load GLTF ===
+     const loader = new GLTFLoader();
+     loader.load("./assets/3d/configurators/car/sc_car_v1.gltf", (gltf) => {
+       const model = gltf.scene;
+ 
+       model.traverse((child) => {
+         if (child.isMesh) {
+           child.castShadow = true;
+           child.receiveShadow = true;
+         }
+       });
+ 
+       scene.add(model);
+ 
+       if (gltf.cameras && gltf.cameras.length > 0) {
+         activeCamera = gltf.cameras[0];
+         activeCamera.aspect = container.clientWidth / container.clientHeight;
+         activeCamera.updateProjectionMatrix();
+       } else {
+         activeCamera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+         activeCamera.position.set(0, 1, 5);
+       }
+ 
+       controls = new OrbitControls(activeCamera, renderer.domElement);
+       controls.target.set(0, 0.5, 0);
+       controls.update();
+ 
+       if (gltf.animations && gltf.animations.length > 0) {
+         mixer = new THREE.AnimationMixer(model);
+         gltf.animations.forEach((clip) => {
+           mixer.clipAction(clip).play();
+         });
+       }
+ 
+       animate();
+     });
+   });
+ 
+   function animate() {
+     requestAnimationFrame(animate);
+     const delta = clock.getDelta();
+     if (mixer) mixer.update(delta);
+     if (controls) controls.update();
+ 
+     // First draw gradient background
+     renderer.autoClear = false;
+     renderer.clear();
+     renderer.render(backgroundScene, backgroundCamera);
+ 
+     // Then draw 3D scene on top
+     renderer.render(scene, activeCamera);
+   }
+ 
+   window.addEventListener("resize", () => {
+     if (activeCamera) {
+       activeCamera.aspect = container.clientWidth / container.clientHeight;
+       activeCamera.updateProjectionMatrix();
+     }
+     renderer.setSize(container.clientWidth, container.clientHeight);
+   });
+ </script>
+ 
+ 
  
  
  
