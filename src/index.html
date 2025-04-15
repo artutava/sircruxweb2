@@ -664,7 +664,11 @@
          <section>
 
             <div id="three-container-car" style="width: 100%; height: 900px;"></div>
-
+            <div id="shadow-toggle-container" style="margin: 20px; text-align: center;">
+               <button id="shadow-toggle-button">Toggle Shadow Type</button>
+               <!-- Tone mapping toggle will be added by JS -->
+             </div>
+             <div id="three-container-car" style="width: 100%; height: 100vh;"></div>
          </section>
 
          
@@ -819,31 +823,59 @@
    import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
  
+   let useVSM = false;
+   let useAgxToneMapping = false;
+ 
    const container = document.getElementById("three-container-car");
+   const toggleContainer = document.getElementById("shadow-toggle-container");
+   const toggleButton = document.getElementById("shadow-toggle-button");
  
-   const scene = new THREE.Scene();
- 
-   const renderer = new THREE.WebGLRenderer({ alpha: false, antialias: true });
+   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+   renderer.toneMapping = useAgxToneMapping ? THREE.AgXToneMapping : THREE.ACESFilmicToneMapping;
    renderer.setPixelRatio(window.devicePixelRatio);
    renderer.setSize(container.clientWidth, container.clientHeight);
    renderer.outputColorSpace = THREE.SRGBColorSpace;
    renderer.shadowMap.enabled = true;
-   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+   renderer.shadowMap.type = useVSM ? THREE.VSMShadowMap : THREE.PCFSoftShadowMap;
    container.appendChild(renderer.domElement);
+ 
+   if (toggleButton) {
+     toggleButton.textContent = useVSM ? 'Switch to PCF Soft Shadow' : 'Switch to VSM Shadow';
+     toggleButton.addEventListener('click', () => {
+       useVSM = !useVSM;
+       renderer.shadowMap.type = useVSM ? THREE.VSMShadowMap : THREE.PCFSoftShadowMap;
+       toggleButton.textContent = useVSM ? 'Switch to PCF Soft Shadow' : 'Switch to VSM Shadow';
+     });
+ 
+     const toneToggle = document.createElement('button');
+     toneToggle.textContent = useAgxToneMapping ? 'Switch to ACES' : 'Switch to AgX';
+     toneToggle.style.marginLeft = '12px';
+     toggleContainer.appendChild(toneToggle);
+ 
+     toneToggle.addEventListener('click', () => {
+       useAgxToneMapping = !useAgxToneMapping;
+       renderer.toneMapping = useAgxToneMapping ? THREE.AgXToneMapping : THREE.ACESFilmicToneMapping;
+       toneToggle.textContent = useAgxToneMapping ? 'Switch to ACES' : 'Switch to AgX';
+     });
+   }
+ 
+   const scene = new THREE.Scene();
  
    const clock = new THREE.Clock();
    let mixer = null;
    let activeCamera = null;
    let controls = null;
  
-   // === Radial gradient background ===
+   const groundY = -0.69;
+   const shadowBlurAmount = 5;
+ 
    const backgroundScene = new THREE.Scene();
    const backgroundCamera = new THREE.Camera();
    const bgGeometry = new THREE.PlaneGeometry(2, 2);
    const bgMaterial = new THREE.ShaderMaterial({
      uniforms: {
-       innerColor: { value: new THREE.Color(0x4b4b4b) },
-       outerColor: { value: new THREE.Color(0x000000) }
+       innerColor: { value: new THREE.Color("#4b4b4b") },
+       outerColor: { value: new THREE.Color("#000000") }
      },
      vertexShader: `
        varying vec2 vUv;
@@ -873,12 +905,12 @@
      texture.mapping = THREE.EquirectangularReflectionMapping;
      scene.environment = texture;
  
-     // === Directional Light ===
      const dirLight = new THREE.DirectionalLight(0xffffff, 2);
      dirLight.position.set(5, 10, 5);
      dirLight.castShadow = true;
      dirLight.shadow.mapSize.set(2048, 2048);
-     dirLight.shadow.bias = -0.0005;
+     dirLight.shadow.bias = useVSM ? -0.0001 : -0.0005;
+     dirLight.shadow.radius = shadowBlurAmount;
      dirLight.shadow.camera.left = -5;
      dirLight.shadow.camera.right = 5;
      dirLight.shadow.camera.top = 5;
@@ -887,7 +919,16 @@
      dirLight.shadow.camera.far = 20;
      scene.add(dirLight);
  
-     // === Load GLTF ===
+     if (!useVSM) {
+       const groundGeometry = new THREE.PlaneGeometry(20, 20);
+       const groundMaterial = new THREE.ShadowMaterial({ opacity: 0.3 });
+       const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+       ground.rotation.x = -Math.PI / 2;
+       ground.position.y = groundY;
+       ground.receiveShadow = true;
+       scene.add(ground);
+     }
+ 
      const loader = new GLTFLoader();
      loader.load("./assets/3d/configurators/car/sc_car_v1.gltf", (gltf) => {
        const model = gltf.scene;
@@ -931,12 +972,9 @@
      if (mixer) mixer.update(delta);
      if (controls) controls.update();
  
-     // First draw gradient background
      renderer.autoClear = false;
      renderer.clear();
      renderer.render(backgroundScene, backgroundCamera);
- 
-     // Then draw 3D scene on top
      renderer.render(scene, activeCamera);
    }
  
@@ -948,6 +986,13 @@
      renderer.setSize(container.clientWidth, container.clientHeight);
    });
  </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
