@@ -53,6 +53,20 @@ a.navbar-brand img {
   margin-left: -10%;
 }
 
+.absolute-pre-canvas {
+  position: relative !important;
+}
+
+.card-overlay-canvas {
+  position: absolute !important;
+  top: 25% !important;
+  right: 10% !important;
+  background: rgba(49, 49, 49, 0.2196078431) !important;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  max-width: 420px;
+}
+
 .text-reset:hover {
   color: var(--bs-primary) !important;
 }

@@ -53,9 +53,22 @@ a.navbar-brand img {
 }
 
 
-    #three-container-1, #three-container-2, #three-container-3  {
-      width: 120% !important;
-      height: 250px !important;
-      margin-top:-100px;
-      margin-left:-10%;
-    }
+#three-container-1, #three-container-2, #three-container-3  {
+    width: 120% !important;
+    height: 250px !important;
+    margin-top:-100px;
+    margin-left:-10%;
+}
+
+.absolute-pre-canvas {
+    position: relative !important;
+}
+
+.card-overlay-canvas {
+    position: absolute !important;
+    top: 25% !important;
+    right: 10% !important;
+    background: #31313138 !important;
+    backdrop-filter: blur(20px);
+    max-width: 420px;
+}
