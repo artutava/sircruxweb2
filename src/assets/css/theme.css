@@ -67,6 +67,10 @@ a.navbar-brand img {
   max-width: 420px;
 }
 
+.services-vid {
+  position: relative;
+}
+
 .text-reset:hover {
   color: var(--bs-primary) !important;
 }
