@@ -30,6 +30,7 @@ function initializeSwiperCarousels() {
          spaceBetween: 30,
          slidesPerView: "auto",
          effect: effect, // Set the effect type
+         
       };
 
       if (effect === "fade") {
