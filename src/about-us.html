@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <link rel="stylesheet" href="@@webRoot/node_modules/swiper/swiper-bundle.min.css">
+   @@include("partials/head/meta.html") @@include("partials/head/head-links.html")
+   @@include("partials/head/analytics.html") @@include("partials/head/clarity.html")
+   <script src="https://kit.fontawesome.com/3ec34a2ff4.js" crossorigin="anonymous"></script>
+   
+   <title>SirCruX Studios | 3D Animation</title>
+
+   <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+
+<body>
+   @@include("partials/navbar-boxed.html",{ "classList": "navbar-light w-100" })
+   <main>
+      <!--Who we are start-->
+      <section class="mb-7 py-xl-9 py-5 mt-6">
+         <div class="container pb-xl-9 pb-5 mt-6">
+            <div class="row align-items-center g-4">
+               <div class="col-lg-6 col-md-12">
+                  <div class="me-xl-8">
+                     <h1 class="mb-3">Who we are</h1>
+                     <p class="lead mb-4">At <strong>SirCruX Studios</strong>, we transform complex ideas into cinematic experiences that captivate, inspire, and connect.</p>
+                     <p class="mb-6 me-xl-6">
+                        Founded in Brazil and serving companies around the world, we are a multidisciplinary studio driven by the belief that impactful storytelling bridges the gap between brands and their audiences.
+    Our roots are grounded in design thinking, ensuring that every project we create not only looks stunning but also solves real problems and resonates deeply with end-users. We specialize in crafting immersive visual narratives that address audience pain points and highlight the unique value of each brand we collaborate with.
+</p>
+
+
+                     <div class="row g-lg-3">
+                        <div class="col-md-6">
+                           <ul class="list-unstyled mb-3">
+                              <li class="d-flex mb-3">
+                                 <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-primary opacity-75" viewBox="0 0 16 16">
+                                       <path
+                                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>
+                                 </span>
+                                 <span class="ms-2">Cinematic storytelling meets advanced technology for engaging narratives.</span>
+                              </li>
+                              <li class="d-flex">
+                                 <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-primary opacity-75" viewBox="0 0 16 16">
+                                       <path
+                                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>
+                                 </span>
+                                 <span class="ms-2">Procedural animation and mocap bring dynamic realism.</span>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="col-md-6">
+                           <ul class="list-unstyled mb-0">
+                              <li class="d-flex mb-3">
+                                 <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-primary opacity-75" viewBox="0 0 16 16">
+                                       <path
+                                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>
+                                 </span>
+                                 <span class="ms-2">Proprietary tools ensure flexibility and precision.</span>
+                              </li>
+                              <li class="d-flex">
+                                 <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-primary opacity-75" viewBox="0 0 16 16">
+                                       <path
+                                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>
+                                 </span>
+                                 <span class="ms-2">Immersive 3D web experiences with Three.js.</span>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-6 col-md-12">
+                  <figure>
+                     <img src="./assets/images/about-img/about-hero-img.jpg" alt="career" class="img-fluid rounded-3" />
+                  </figure>
+               </div>
+            </div>
+         </div>
+       
+      </section>
+      <!--Who we are end-->
+
+
+      <!--Team member start-->
+      <section class="py-lg-9 py-5 bg-primary">
+         <div class="container">
+            <div class="row g-5">
+               <div class="col-md-3 col-6">
+                  <div class="text-center">
+                     <h2 class="text-white-stable">10+</h2>
+                     <h5 class="text-white-stable mb-0">Years of Global Expertise</h5>
+                  </div>
+               </div>
+               <div class="col-md-3 col-6">
+                  <div class="text-center">
+                     <h2 class="text-white-stable">200+</h2>
+                     <h5 class="text-white-stable mb-0">Projects Shipped</h5>
+                  </div>
+               </div>
+               <div class="col-md-3 col-6">
+                  <div class="text-center">
+                     <h2 class="text-white-stable">1000+</h2>
+                     <h5 class="text-white-stable mb-0">Hours of Motion Capture Recorded</h5>
+                  </div>
+               </div>
+               <div class="col-md-3 col-6">
+                  <div class="text-center">
+                     <h2 class="text-white-stable">50+</h2>
+                     <h5 class="text-white-stable mb-0">Clients Worldwide</h5>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--Team member end-->
+
+   <!--Success stories-->
+   <section class="py-xl-9 py-5 bg-light">
+      <div class="container">
+         <div class="row">
+            <div class="col-xl-8 offset-xl-2 col-md-8 offset-md-2">
+               <div class="text-center mx-xl-7 mb-5">
+                  <h2 class="mb-3">Read the real-life success stories of the companies and industries.</h2>
+                  <a href="#!" class="icon-link icon-link-hover fw-semicold">
+                     Browse all customer stories
+                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path
+                           fill-rule="evenodd"
+                           d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                     </svg>
+                  </a>
+               </div>
+            </div>
+         </div>
+         <div class="table-responsive-lg">
+            <div class="row flex-nowrap pb-5 me-5 me-lg-0">
+               <div class="col-lg-4 col-md-6">
+                  <div class="card shadow-sm h-100">
+                     <div class="card-body p-lg-5">
+                        <figure class="mb-5">
+                           <img src="./assets/images/client-logo/clients-logo-2.svg" alt="logo" />
+                        </figure>
+                        <p class="mb-0">
+                           “SirCruX Studios brought our product to life through cinematic storytelling and advanced simulations. Their unique ability to translate complex technologies into engaging, immersive visuals helped us connect with customers like never before.”
+                        </p>
+                        <div class="mt-4">
+                           <h5 class="mb-0">Carlos Mendes</h5>
+                           <small>Senior Design Engineer</small>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-6">
+                  <div class="card shadow-sm h-100">
+                     <div class="card-body p-lg-5">
+                        <figure class="mb-5">
+                           <img src="./assets/images/client-logo/clients-logo-1.svg" alt="logo" />
+                        </figure>
+                        <p class="mb-0">
+                           “Working with SirCruX Studios was a turning point for our public health communication. They combined design thinking and cutting-edge animation to create visual narratives that made complex scientific concepts accessible and engaging to diverse audiences.”
+                        </p>
+                        <div class="mt-4">
+                           <h5 class="mb-0">Dr. Helena Souza</h5>
+                           <small>Communications Director</small>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-6">
+                  <div class="card shadow-sm h-100">
+                     <div class="card-body p-lg-5">
+                        <figure class="mb-5">
+                           <img src="./assets/images/client-logo/clients-logo-3.svg" alt="logo" />
+                        </figure>
+                        <p class="mb-0">“SirCruX Studios’ mastery of procedural animation and immersive web technologies made our product launch unforgettable. Their attention to user experience and their ability to craft compelling visual stories set them apart from other studios we’ve worked with.”</p>
+                        <div class="mt-4">
+                           <h5 class="mb-0">David Lin</h5>
+                           <small>Head of Marketing</small>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!--Success stories-->
+
+      
+
+   
+      
+   </main>
+   @@include("partials/footer.html")@@include("partials/btn-scroll-top.html") @@include("partials/scripts.html")
+
+   <!--Swiper JS -->
+   <script src="@@webRoot/node_modules/swiper/swiper-bundle.min.js"></script>
+   <script src="@@webRoot/assets/js/vendors/swiper.js"></script>
+   <script src="@@webRoot/node_modules/scrollcue/scrollCue.min.js"></script>
+   <script src="@@webRoot/assets/js/vendors/scrollcue.js"></script>
+   <script src="@@webRoot/assets/js/vendors/filter-gallery.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+   <script>
+      $(document).ready(function() {
+          $('.tilt-box').tilt({
+              scale: 1.05,
+              glare: true,
+              maxGlare: 0.08,
+          });
+      });
+  </script>
+
+<script type="module">
+   import * as THREE from "three";
+   import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+   import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUniformsLib.js";
+ 
+   RectAreaLightUniformsLib.init();
+ 
+   function createThreeIcon(containerId, gltfPath, modelColor, rotationSpeed = 0.005, useCustomMaterial = true) {
+     const container = document.getElementById(containerId);
+     const scene = new THREE.Scene();
+     const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+     camera.position.z = 5;
+ 
+     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+     renderer.setPixelRatio(window.devicePixelRatio);
+     renderer.outputEncoding = THREE.sRGBEncoding;
+     renderer.setSize(container.clientWidth, container.clientHeight);
+     container.appendChild(renderer.domElement);
+ 
+     const clock = new THREE.Clock();
+ 
+     // Lights
+     const keyLight = new THREE.RectAreaLight(0xffffff, 8, 2, 2);
+     keyLight.position.set(-2, 2, 3);
+     keyLight.lookAt(0, 0, 0);
+     scene.add(keyLight);
+ 
+     const fillLight = new THREE.RectAreaLight(0xffffff, 4, 1.5, 1.5);
+     fillLight.position.set(2, 1.5, 2.5);
+     fillLight.lookAt(0, 0, 0);
+     scene.add(fillLight);
+ 
+     const rimLight = new THREE.RectAreaLight(0xffffff, 6, 2, 2);
+     rimLight.position.set(0, 2, -3);
+     rimLight.lookAt(0, 0, 0);
+     scene.add(rimLight);
+ 
+     // Load Model
+     const loader = new GLTFLoader();
+     let model = null;
+     let mixer = null;
+ 
+     loader.load(gltfPath, (gltf) => {
+       model = gltf.scene;
+       model.scale.set(1.5, 1.5, 1.5);
+ 
+       if (useCustomMaterial) {
+         model.traverse((child) => {
+           if (child.isMesh) {
+             child.material = new THREE.MeshStandardMaterial({
+               color: modelColor,
+               metalness: 0.0,
+               roughness: 0.1,
+             });
+           }
+         });
+       }
+ 
+       scene.add(model);
+ 
+       // Setup animation mixer
+       if (gltf.animations && gltf.animations.length > 0) {
+         mixer = new THREE.AnimationMixer(model);
+         gltf.animations.forEach((clip) => {
+           mixer.clipAction(clip).play();
+         });
+       }
+     }, undefined, (err) => {
+       console.error(`Error loading ${gltfPath}:`, err);
+     });
+ 
+     // Mouse + Zoom interaction
+     let targetFov = 45;
+     let mouse = { x: 0, y: 0 };
+ 
+     container.addEventListener("mouseenter", () => targetFov = 30);
+     container.addEventListener("mouseleave", () => targetFov = 45);
+ 
+     container.addEventListener("mousemove", (e) => {
+       const rect = container.getBoundingClientRect();
+       mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+       mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+     });
+ 
+     let baseRotation = 0;
+     let mouseInfluence = { x: 0, y: 0 };
+ 
+     function animate() {
+       requestAnimationFrame(animate);
+ 
+       const delta = clock.getDelta();
+       if (mixer) mixer.update(delta);
+ 
+       camera.fov += (targetFov - camera.fov) * 0.05;
+       camera.updateProjectionMatrix();
+ 
+       if (model) {
+         baseRotation += rotationSpeed;
+         mouseInfluence.x += (mouse.x * 0.3 - mouseInfluence.x) * 0.1;
+         mouseInfluence.y += (mouse.y * 0.3 - mouseInfluence.y) * 0.1;
+         model.rotation.y = baseRotation + mouseInfluence.x;
+         model.rotation.x = mouseInfluence.y;
+       }
+ 
+       renderer.render(scene, camera);
+     }
+ 
+     animate();
+ 
+     window.addEventListener("resize", () => {
+       camera.aspect = container.clientWidth / container.clientHeight;
+       camera.updateProjectionMatrix();
+       renderer.setSize(container.clientWidth, container.clientHeight);
+     });
+   }
+ 
+   // ✅ Use with different speeds and material override:
+   createThreeIcon("three-container-1", "./assets/3d/icons/robot_arm.gltf", 0x272727, 0.01, false);   // Custom material
+   createThreeIcon("three-container-2", "./assets/3d/icons/molecule.gltf", 0x272727, 0.005, false); // Original material
+   createThreeIcon("three-container-3", "./assets/3d/icons/molecule.gltf", 0x272727, 0.002, true);  // Custom material
+ </script>
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</body>
+
+</html>

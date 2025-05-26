@@ -97,7 +97,7 @@ background-attachment: scroll, scroll;
 }
 
 .steps-photo-full-2 {
-    background-image: url(/assets/images/steps/foto-meet.png);
+    background-image: url(/assets/images/steps/step1-product.png);
    background-size: cover;
   background-position: center;
   z-index: 1;
@@ -135,4 +135,9 @@ z-index: 1;
 
 .text-white-2{
     color: #898989 !important;
+}
+
+
+#contact-section {
+  scroll-margin-top: 100px;
 }
